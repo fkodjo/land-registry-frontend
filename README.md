@@ -69,9 +69,9 @@ const API_URL = "http://localhost:3002";
 ## ▶️ Démarrage
 
 Pour lancer l'application en mode développement :
-Bash
-
+```bash
 npm run dev
+```
 
 L'application sera accessible sur : http://localhost:5173 (ou le port indiqué par Vite).
 ## 📂 Structure du Projet
