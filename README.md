@@ -1,6 +1,6 @@
 # 🏛️ Land Registry DApp - Frontend
 
-Interface utilisateur moderne pour le système de Cadastre Décentralisé basé sur la Blockchain Ethereum.
+Interface utilisateur moderne pour le système de Cadastre Décentralisé basé sur la Blockchain Ethereum (Projet de recherche).
 Cette application permet aux utilisateurs d'enregistrer des terrains, de visualiser leurs titres fonciers et de transférer des propriétés en toute sécurité.
 
 ---
