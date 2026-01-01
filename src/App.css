@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* --- 1. CONFIGURATION GLOBALE (Essentiel pour le footer) --- */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+:root {
+  --bg-dark: #63707e;    /* Fond gris foncé global */
+  --nav-bg: #8ba0b3;     /* Couleur des boutons du menu */
+  --btn-color: #5c6e7a;  /* Couleur des boutons d'action */
+  --auth-bg: #ccecf8;    /* Bleu clair Login/Register */
+  --text-dark: #333;
+}
+
+/* --- CLASSE POUR LE CONTENEUR PRINCIPAL DANS App.jsx --- */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Force l'app à prendre toute la hauteur de l'écran */
+}
+
+/* --- CLASSE POUR POUSSER LE FOOTER --- */
+.content-wrapper {
+  flex: 1; /* C'est cette ligne qui pousse le footer en bas */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* --- NAVBAR (Centrée) --- */
+.navbar {
+  display: flex;
+  justify-content: center; /* Centre les boutons */
+  align-items: center;
+  padding: 20px;
+  background-color: var(--bg-dark);
+  gap: 15px;
+  position: relative;
+  flex-shrink: 0; /* Empêche la navbar de rétrécir */
+}
+
+.nav-link {
+  background-color: #8faab9;
+  color: white;
+  text-decoration: none;
+  padding: 10px 25px;
+  font-size: 16px;
+  border-radius: 2px;
+  transition: opacity 0.3s;
+}
+
+.nav-link:hover { opacity: 0.9; }
+
+.nav-right {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.nav-right a, .nav-right span {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+/* --- LAYOUT DES PAGES --- */
+/* On enlève les min-height fixes pour laisser Flexbox gérer la hauteur */
+
+.main-content {
+  background-color: #f4f4f4;
+  padding: 40px 20px;
+  text-align: center;
+  flex: 1; /* Prend tout l'espace restant */
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-dark);
+  flex: 1; /* Prend tout l'espace restant */
+  padding: 40px 0;
+}
+
+/* --- COMPOSANTS INTERNES --- */
+
+/* Page Accueil */
+.hero-section h2 { margin-bottom: 20px; color: #000; font-size: 1.4rem; }
+.search-box { margin: 30px auto; max-width: 500px; text-align: left; }
+.search-input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; margin-bottom: 10px; box-sizing: border-box; }
+
+.btn-action {
+  background-color: var(--btn-color);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+}
+.btn-blue { background-color: #4285f4; width: auto; }
+
+/* Auth Cards */
+.auth-card {
+  background-color: var(--auth-bg);
+  padding: 40px;
+  width: 450px;
+  border-radius: 4px;
+  text-align: center;
+  border: 2px solid #acdbf2;
+}
+.auth-card h2 { color: #667; margin-bottom: 20px; }
+.form-group { margin-bottom: 15px; text-align: left; }
+.form-group label { display: block; color: #5c6e7a; font-weight: bold; margin-bottom: 5px; }
+.form-control { width: 100%; padding: 10px; border: 1px solid #7ea6bf; background-color: #dcedf7; border-radius: 4px; box-sizing: border-box; }
+.auth-link { display: block; margin-top: 15px; color: #007bff; text-decoration: none; font-weight: bold; }
+
+/* Dashboard Cards */
+.land-card {
+  background: white;
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 900px;
+  margin: 20px auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.land-img { width: 300px; height: 300px; object-fit: cover; flex-shrink: 0; }
+.land-info { padding: 30px; flex-grow: 1; }
+.land-info p { margin: 8px 0; color: #555; font-size: 15px; }
+.land-info strong { color: #5c6e7a; }
+
+/* Modales */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: flex; justify-content: center; align-items: center; z-index: 1000;
+}
+.modal-content {
+  background: white; padding: 40px; width: 600px;
+  text-align: center; position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.close-btn { position: absolute; top: 10px; right: 15px; font-size: 28px; background: none; border: none; cursor: pointer; }
+
+.status-success { color: #28a745; font-size: 32px; margin-bottom: 15px; }
+.status-error { color: #dc3545; font-size: 32px; margin-bottom: 15px; }
+
+/* Depot */
+.depot-form { max-width: 600px; margin: 0 auto; text-align: left; }
+.file-input-wrapper { border: 1px solid #4285f4; background: #e8f0fe; padding: 10px; border-radius: 4px; text-align: right; }
+
+/* --- FOOTER --- */
+.app-footer {
+  background-color: var(--bg-dark);
+  color: white;
+  padding: 30px 20px;
+  margin-top: auto; /* Sécurité supplémentaire */
+  border-top: 4px solid #5c6e7a;
+  flex-shrink: 0; /* Empêche le footer de s'écraser */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-content p {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+.contract-info {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #ccc;
+}
+
+.address-text {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: rgba(0,0,0,0.2);
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: #8faab9;
+  display: inline-block;
+  margin-top: 5px;
+  word-break: break-all; /* Empêche l'adresse de déborder sur mobile */
+}
