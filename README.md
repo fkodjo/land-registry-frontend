@@ -32,7 +32,7 @@ Cette application permet aux utilisateurs d'enregistrer des terrains, de visuali
 
 Avant de commencer, assurez-vous d'avoir installé :
 
-1.  **Node.js** (v14 ou supérieur)
+1.  **Node.js** (v20 ou supérieur)
 2.  **npm** (ou yarn)
 3.  **Le Backend API** doit être lancé sur le port `3002`.
 
