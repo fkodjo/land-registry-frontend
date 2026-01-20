@@ -15,7 +15,7 @@ export default function AdminPanel() {
     useEffect(fetchLands, []);
 
     const approveLand = async (tokenId) => {
-        if(!window.confirm("Valider ce titre foncier ? Cette action est irréversible (Blockchain).")) return;
+        if (!window.confirm("Valider ce titre foncier ? Cette action est irréversible (Blockchain).")) return;
         setLoadingId(tokenId);
         try {
             await api.post('/lands/approve', { tokenId });
@@ -50,7 +50,7 @@ export default function AdminPanel() {
                     <tbody>
                         {lands.map(land => (
                             <tr key={land._id}>
-                                <td><a href={land.planPicture} target="_blank"><img src={land.planPicture} className="thumb"/></a></td>
+                                <td><a href={land.planPicture} target="_blank"><img src={land.planPicture} className="thumb" /></a></td>
                                 <td>{land.uniqueIdentity}</td>
                                 <td title={land.requesterIdentity}>
                                     {land.requesterIdentity ? land.requesterIdentity.substring(0, 6) + '...' : 'N/A'}
@@ -58,8 +58,8 @@ export default function AdminPanel() {
                                 <td><span className={`status ${land.status}`}>{land.status}</span></td>
                                 <td>
                                     {land.status === 'PENDING' && (
-                                        <button 
-                                            onClick={() => approveLand(land.tokenId)} 
+                                        <button
+                                            onClick={() => approveLand(land.tokenId)}
                                             disabled={loadingId === land.tokenId}
                                             className="btn-approve"
                                         >

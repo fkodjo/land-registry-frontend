@@ -26,11 +26,11 @@ export default function Login() {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Nom d'utilisateur:</label>
-                        <input className="form-control" type="text" onChange={e => setForm({...form, userName: e.target.value})} required />
+                        <input className="form-control" type="text" onChange={e => setForm({ ...form, userName: e.target.value })} required />
                     </div>
                     <div className="form-group">
                         <label>Mot de passe:</label>
-                        <input className="form-control" type="password" onChange={e => setForm({...form, password: e.target.value})} required />
+                        <input className="form-control" type="password" onChange={e => setForm({ ...form, password: e.target.value })} required />
                     </div>
                     <button type="submit" className="btn-action">Se connecter</button>
                 </form>

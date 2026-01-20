@@ -5,12 +5,12 @@ export default function Dashboard() {
   const [lands, setLands] = useState([]);
   const [selectedLand, setSelectedLand] = useState(null);
   const [receiver, setReceiver] = useState('');
-  
+
   // États des modales
   const [showTransferModal, setShowTransferModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
-  
+
   const [txDetails, setTxDetails] = useState({ hash: '', to: '' });
 
   useEffect(() => {
@@ -33,23 +33,23 @@ export default function Dashboard() {
     if (!receiver) return;
 
     try {
-        // --- LOGIQUE DE TRANSFERT ---
-        // Si vous avez la route backend, décommentez ceci :
-        // const res = await api.post('/lands/approve', { tokenId: selectedLand.tokenId }); // Ou route transfert spécifique
-        
-        // Pour correspondre au design, on simule l'affichage des modales :
-        if(receiver === 'error') throw new Error("Simulation Fail");
+      // LOGIQUE DE TRANSFERT
+      // Si vous avez la route backend, décommentez ceci :
+      // const res = await api.post('/lands/approve', { tokenId: selectedLand.tokenId }); // Ou route transfert spécifique
 
-        setTxDetails({ 
-            hash: "0xSIMULATED_TRANSACTION_HASH...", 
-            to: receiver 
-        });
-        
-        setShowTransferModal(false);
-        setShowSuccessModal(true);
+      // Pour correspondre au design, on simule l'affichage des modales :
+      if (receiver === 'error') throw new Error("Simulation Fail");
+
+      setTxDetails({
+        hash: "0xSIMULATED_TRANSACTION_HASH...",
+        to: receiver
+      });
+
+      setShowTransferModal(false);
+      setShowSuccessModal(true);
     } catch (error) {
-        setShowTransferModal(false);
-        setShowErrorModal(true);
+      setShowTransferModal(false);
+      setShowErrorModal(true);
     }
   };
 
@@ -60,8 +60,8 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="main-content" style={{textAlign: 'left'}}>
-      {lands.length === 0 && <p style={{textAlign:'center', marginTop: 40}}>Aucun titre foncier trouvé.</p>}
+    <div className="main-content" style={{ textAlign: 'left' }}>
+      {lands.length === 0 && <p style={{ textAlign: 'center', marginTop: 40 }}>Aucun titre foncier trouvé.</p>}
 
       {lands.map(land => (
         <div key={land._id} className="land-card">
@@ -74,57 +74,57 @@ export default function Dashboard() {
             {/* On affiche le wallet car on n'a pas le nom en base */}
             <p><strong>Propriétaire :</strong> {land.ownerIdentity}</p>
             <p><strong>Description :</strong> {land.description}</p>
-            
-            <button className="btn-action" style={{marginTop: '20px', width: 'auto'}} onClick={() => openTransfer(land)}>
-                Effectuer un transfert
+
+            <button className="btn-action" style={{ marginTop: '20px', width: 'auto' }} onClick={() => openTransfer(land)}>
+              Effectuer un transfert
             </button>
           </div>
         </div>
       ))}
 
-      {/* --- MODALE TRANSFERT --- */}
+      {/* MODALE TRANSFERT */}
       {showTransferModal && (
         <div className="modal-overlay">
           <div className="modal-content">
             <button className="close-btn" onClick={closeAll}>&times;</button>
-            <div style={{height:'150px', background:'#eee', marginBottom:'15px', display:'flex', justifyContent:'center'}}>
-                {selectedLand?.planPicture && <img src={selectedLand.planPicture} style={{maxHeight:'100%'}} alt=""/>}
+            <div style={{ height: '150px', background: '#eee', marginBottom: '15px', display: 'flex', justifyContent: 'center' }}>
+              {selectedLand?.planPicture && <img src={selectedLand.planPicture} style={{ maxHeight: '100%' }} alt="" />}
             </div>
-            <p style={{textAlign:'left'}}><strong>ID:</strong> {selectedLand?.uniqueIdentity}</p>
-            <input 
-                type="text" 
-                className="form-control" 
-                style={{marginTop:'10px', marginBottom:'20px'}}
-                placeholder="Entrer l'adresse portefeuille du récepteur"
-                value={receiver}
-                onChange={e => setReceiver(e.target.value)}
+            <p style={{ textAlign: 'left' }}><strong>ID:</strong> {selectedLand?.uniqueIdentity}</p>
+            <input
+              type="text"
+              className="form-control"
+              style={{ marginTop: '10px', marginBottom: '20px' }}
+              placeholder="Entrer l'adresse portefeuille du récepteur"
+              value={receiver}
+              onChange={e => setReceiver(e.target.value)}
             />
-            <button className="btn-action" style={{width:'100%'}} onClick={handleTransfer}>Valider le transfert</button>
+            <button className="btn-action" style={{ width: '100%' }} onClick={handleTransfer}>Valider le transfert</button>
           </div>
         </div>
       )}
 
-      {/* --- MODALE SUCCÈS (Texte Vert) --- */}
+      {/* MODALE SUCCÈS */}
       {showSuccessModal && (
         <div className="modal-overlay">
           <div className="modal-content">
             <button className="close-btn" onClick={closeAll}>&times;</button>
             <h2 className="status-success">Opération réussie</h2>
-            <div style={{textAlign: 'left', wordBreak: 'break-all', fontSize:'13px', color:'#555', marginBottom:'20px'}}>
-                <p><strong>Hash:</strong> {txDetails.hash}</p>
-                <p><strong>To:</strong> {txDetails.to}</p>
+            <div style={{ textAlign: 'left', wordBreak: 'break-all', fontSize: '13px', color: '#555', marginBottom: '20px' }}>
+              <p><strong>Hash:</strong> {txDetails.hash}</p>
+              <p><strong>To:</strong> {txDetails.to}</p>
             </div>
-            <button className="btn-action" style={{width:'100%'}} onClick={closeAll}>Fermer</button>
+            <button className="btn-action" style={{ width: '100%' }} onClick={closeAll}>Fermer</button>
           </div>
         </div>
       )}
 
-      {/* --- MODALE ECHEC (Texte Rouge) --- */}
+      {/* MODALE ECHEC */}
       {showErrorModal && (
         <div className="modal-overlay">
           <div className="modal-content">
             <button className="close-btn" onClick={closeAll}>&times;</button>
-            <h2 className="status-error" style={{margin:'40px 0'}}>Echec de l'opération</h2>
+            <h2 className="status-error" style={{ margin: '40px 0' }}>Echec de l'opération</h2>
           </div>
         </div>
       )}
